@@ -7,6 +7,10 @@ app = Flask(__name__)
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 CHAT_ID = os.environ["CHAT_ID"]
 
+@app.route("/", methods=["GET"])
+def home():
+    return "Bot online"
+
 @app.route("/tv", methods=["POST"])
 def tv():
     data = request.get_json(silent=True) or {}
@@ -22,7 +26,3 @@ def tv():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
-
-@app.route("/", methods=["GET"])
-def home():
-    return "Bot online"
